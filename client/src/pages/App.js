@@ -1,8 +1,14 @@
-import React from "react";
-import withRoot from "../withRoot";
+import React from 'react';
 
-const App = () => {
-  return <div>App</div>;
-};
+import withRoot from '../withRoot';
+import Map from '../components/Map';
+import Header from '../components/Header';
+
+const App = () => (
+  <>
+    <Header />
+    <Map />
+  </>
+);
 
 export default withRoot(App);

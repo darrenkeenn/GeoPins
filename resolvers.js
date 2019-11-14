@@ -1,12 +1,14 @@
-const user = {
-    _id: '1',
-    name: 'Darren',
-    email: 'email@mail.com',
-    picture: 'https://cloudinary.com/asdf'
-}
+const { AuthenticationError } = require('apollo-server');
+
+const authenticated = next => (_, args, ctx, info) => {
+  if (!ctx.currentUser) {
+    throw new AuthenticationError('You must be logged in');
+  }
+  return next(_, args, ctx, info);
+};
 
 module.exports = {
-    Query: {
-        me: () => user
-    }
-}
+  Query: {
+    me: authenticated((_, args, ctx) => ctx.currentUser),
+  },
+};
