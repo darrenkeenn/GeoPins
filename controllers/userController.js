@@ -19,10 +19,8 @@ const verifyAuthToken = async token => {
 const checkIfUserExists = async email => User.findOne({ email }).exec();
 
 const createNewUser = googleUser => {
-  console.log(googleUser, 'googleUser');
   const { name, email, picture } = googleUser;
   const user = { name, email, picture };
-  console.log(user);
   return new User(user).save();
 };
 
